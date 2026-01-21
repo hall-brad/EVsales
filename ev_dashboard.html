@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Market Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #366092 0%, #2d5075 100%);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            padding: 40px;
+        }
+
+        .view-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .view-btn {
+            padding: 12px 30px;
+            font-size: 1em;
+            font-weight: 600;
+            border: 2px solid #366092;
+            border-radius: 8px;
+            background: white;
+            color: #366092;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .view-btn:hover {
+            background: #366092;
+            color: white;
+        }
+
+        .view-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+        }
+
+        .country-view, .rankings-view {
+            display: none;
+        }
+
+        .country-view.active, .rankings-view.active {
+            display: block;
+        }
+
+        .country-selector {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .country-selector label {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #366092;
+            margin-right: 15px;
+        }
+
+        .country-selector select {
+            padding: 12px 20px;
+            font-size: 1.1em;
+            border: 2px solid #366092;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            min-width: 300px;
+            transition: all 0.3s;
+        }
+
+        .country-selector select:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .data-warning {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            display: none;
+        }
+
+        .data-warning.show {
+            display: block;
+        }
+
+        .data-warning strong {
+            color: #856404;
+        }
+
+        .data-warning p {
+            margin: 5px 0;
+            color: #856404;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .metric-label {
+            font-size: 0.85em;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .metric-subtitle {
+            font-size: 0.8em;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .chart-container {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .chart-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #366092;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 350px;
+        }
+
+        .rankings-section {
+            margin-bottom: 40px;
+        }
+
+        .rankings-selector {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .rankings-selector label {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #366092;
+            margin-right: 15px;
+        }
+
+        .rankings-selector select {
+            padding: 12px 20px;
+            font-size: 1.1em;
+            border: 2px solid #366092;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            min-width: 300px;
+        }
+
+        .rankings-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .rankings-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .rankings-table th {
+            background: linear-gradient(135deg, #366092 0%, #2d5075 100%);
+            color: white;
+            padding: 18px;
+            text-align: left;
+            font-size: 1.1em;
+        }
+
+        .rankings-table td {
+            padding: 15px 18px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .rankings-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .rank-number {
+            font-weight: bold;
+            color: #366092;
+            font-size: 1.1em;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .incomplete-marker {
+            display: inline-block;
+            background: #ffc107;
+            color: #856404;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.7em;
+            font-weight: bold;
+            margin-left: 5px;
+            vertical-align: super;
+        }
+
+        @media (max-width: 768px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .metric-value {
+                font-size: 1.6em;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rankings-table {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚗 EV Market Dashboard</h1>
+            <p>Global Electric Vehicle Sales Analysis (1960-2025)</p>
+        </div>
+
+        <div class="main-content">
+            <div class="view-selector">
+                <button class="view-btn active" onclick="switchView('country')">Country View</button>
+                <button class="view-btn" onclick="switchView('rankings')">Global Rankings</button>
+            </div>
+
+            <!-- Country View -->
+            <div class="country-view active">
+                <div class="country-selector">
+                    <label for="countrySelect">Select Country:</label>
+                    <select id="countrySelect" onchange="updateDashboard()">
+                        <option value="">-- Choose a Country --</option>
+                    </select>
+                </div>
+
+                <div class="data-warning" id="dataWarning">
+                    <strong>⚠️ Data Completeness Notice</strong>
+                    <p id="warningText"></p>
+                </div>
+
+                <div class="metrics-grid" id="metricsGrid">
+                    <div class="metric-card">
+                        <div class="metric-label">2025 EV Sales</div>
+                        <div class="metric-value" id="evSales">-</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Global Rank</div>
+                        <div class="metric-value" id="globalRank">-</div>
+                        <div class="metric-subtitle" id="globalShare">-</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">EV % of Total Sales</div>
+                        <div class="metric-value" id="evPercentage">-</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Year-over-Year Growth</div>
+                        <div class="metric-value" id="yoyGrowth">-</div>
+                    </div>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <div class="chart-title">Annual EV Sales</div>
+                        <div class="chart-wrapper">
+                            <canvas id="annualChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <div class="chart-title">Cumulative EV Sales</div>
+                        <div class="chart-wrapper">
+                            <canvas id="cumulativeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rankings View -->
+            <div class="rankings-view">
+                <div class="rankings-selector">
+                    <label for="rankingSelect">View Top 15 By:</label>
+                    <select id="rankingSelect" onchange="updateRankings()">
+                        <option value="sales">Total EV Sales</option>
+                        <option value="percentage">EV % of Total Sales</option>
+                        <option value="growth">Year-over-Year Growth</option>
+                    </select>
+                </div>
+
+                <div class="rankings-table" id="rankingsTable">
+                    <!-- Rankings table will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            Data Source: Global Car Sales Database | Analysis Period: 1960-2025 | <span class="incomplete-marker">PARTIAL</span> indicates incomplete year data
+        </div>
+    </div>
+
+    <script src="ev_data.js"></script>
+    <script>
+        let annualChart, cumulativeChart;
+
+        // Populate country dropdown
+        window.addEventListener('DOMContentLoaded', () => {
+            const select = document.getElementById('countrySelect');
+            const countries = Object.keys(evData).sort();
+
+            countries.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country;
+                option.textContent = country;
+                select.appendChild(option);
+            });
+
+            // Initialize rankings
+            updateRankings();
+        });
+
+        function switchView(view) {
+            // Update buttons
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update views
+            if (view === 'country') {
+                document.querySelector('.country-view').classList.add('active');
+                document.querySelector('.rankings-view').classList.remove('active');
+            } else {
+                document.querySelector('.country-view').classList.remove('active');
+                document.querySelector('.rankings-view').classList.add('active');
+            }
+        }
+
+        function formatNumber(num) {
+            if (num === null || num === undefined) return '-';
+            return num.toLocaleString('en-US');
+        }
+
+        function formatPercentage(num, decimals = 2) {
+            if (num === null || num === undefined) return '-';
+            return num.toFixed(decimals) + '%';
+        }
+
+        function updateRankings() {
+            const rankingType = document.getElementById('rankingSelect').value;
+            const countries2025 = [];
+
+            // Collect 2025 data for all countries
+            for (const country in evData) {
+                const data = evData[country];
+                const index2025 = data.years.indexOf(2025);
+
+                if (index2025 !== -1) {
+                    countries2025.push({
+                        country: country,
+                        evSales: data.ev_sales[index2025],
+                        totalSales: data.total_sales[index2025],
+                        evPercentage: data.ev_percentage[index2025] * 100,
+                        growth: data.yoy_growth[index2025],
+                        isComplete: data.is_complete[index2025]
+                    });
+                }
+            }
+
+            // Sort based on selected ranking
+            if (rankingType === 'sales') {
+                countries2025.sort((a, b) => b.evSales - a.evSales);
+            } else if (rankingType === 'percentage') {
+                countries2025.sort((a, b) => b.evPercentage - a.evPercentage);
+            } else if (rankingType === 'growth') {
+                countries2025.sort((a, b) => {
+                    if (b.growth === null || b.growth === undefined) return -1;
+                    if (a.growth === null || a.growth === undefined) return 1;
+                    return b.growth - a.growth;
+                });
+            }
+
+            // Take top 15
+            const top15 = countries2025.slice(0, 15);
+
+            // Build table
+            let tableHTML = '<table><thead><tr>';
+            tableHTML += '<th style="width: 60px;">Rank</th>';
+            tableHTML += '<th>Country</th>';
+
+            if (rankingType === 'sales') {
+                tableHTML += '<th style="text-align: right;">EV Sales</th>';
+                tableHTML += '<th style="text-align: right;">Total Sales</th>';
+                tableHTML += '<th style="text-align: right;">EV %</th>';
+            } else if (rankingType === 'percentage') {
+                tableHTML += '<th style="text-align: right;">EV % of Total</th>';
+                tableHTML += '<th style="text-align: right;">EV Sales</th>';
+                tableHTML += '<th style="text-align: right;">Total Sales</th>';
+            } else if (rankingType === 'growth') {
+                tableHTML += '<th style="text-align: right;">YoY Growth</th>';
+                tableHTML += '<th style="text-align: right;">EV Sales</th>';
+                tableHTML += '<th style="text-align: right;">EV %</th>';
+            }
+
+            tableHTML += '</tr></thead><tbody>';
+
+            top15.forEach((item, index) => {
+                tableHTML += '<tr>';
+                tableHTML += `<td class="rank-number">${index + 1}</td>`;
+
+                const incompleteMarker = item.isComplete === 'No' ? '<span class="incomplete-marker">PARTIAL</span>' : '';
+                tableHTML += `<td>${item.country} ${incompleteMarker}</td>`;
+
+                if (rankingType === 'sales') {
+                    tableHTML += `<td style="text-align: right;"><strong>${formatNumber(item.evSales)}</strong></td>`;
+                    tableHTML += `<td style="text-align: right;">${formatNumber(item.totalSales)}</td>`;
+                    tableHTML += `<td style="text-align: right;">${formatPercentage(item.evPercentage, 2)}</td>`;
+                } else if (rankingType === 'percentage') {
+                    tableHTML += `<td style="text-align: right;"><strong>${formatPercentage(item.evPercentage, 2)}</strong></td>`;
+                    tableHTML += `<td style="text-align: right;">${formatNumber(item.evSales)}</td>`;
+                    tableHTML += `<td style="text-align: right;">${formatNumber(item.totalSales)}</td>`;
+                } else if (rankingType === 'growth') {
+                    const growthText = item.growth !== null && item.growth !== undefined ? formatPercentage(item.growth, 2) : 'N/A';
+                    tableHTML += `<td style="text-align: right;"><strong>${growthText}</strong></td>`;
+                    tableHTML += `<td style="text-align: right;">${formatNumber(item.evSales)}</td>`;
+                    tableHTML += `<td style="text-align: right;">${formatPercentage(item.evPercentage, 2)}</td>`;
+                }
+
+                tableHTML += '</tr>';
+            });
+
+            tableHTML += '</tbody></table>';
+            document.getElementById('rankingsTable').innerHTML = tableHTML;
+        }
+
+        function updateDashboard() {
+            const country = document.getElementById('countrySelect').value;
+
+            if (!country || !evData[country]) {
+                document.getElementById('evSales').textContent = '-';
+                document.getElementById('globalRank').textContent = '-';
+                document.getElementById('globalShare').textContent = '-';
+                document.getElementById('yoyGrowth').textContent = '-';
+                document.getElementById('evPercentage').textContent = '-';
+                document.getElementById('dataWarning').classList.remove('show');
+                return;
+            }
+
+            const data = evData[country];
+            const years = data.years;
+            const evSales = data.ev_sales;
+            const evPercentages = data.ev_percentage;
+            const yoyGrowth = data.yoy_growth;
+            const isComplete = data.is_complete;
+            const monthsAvailable = data.months_available;
+            const rank = data.rank;
+            const globalShare = data.global_share;
+
+            // Check for incomplete data and display warning
+            const incompleteYears = years.filter((year, idx) => isComplete[idx] === 'No');
+            if (incompleteYears.length > 0) {
+                const warningText = `This country has incomplete data for ${incompleteYears.length} year(s): ${incompleteYears.join(', ')}. These years are marked with <span class="incomplete-marker">PARTIAL</span> on the charts.`;
+                document.getElementById('warningText').innerHTML = warningText;
+                document.getElementById('dataWarning').classList.add('show');
+            } else {
+                document.getElementById('dataWarning').classList.remove('show');
+            }
+
+            // Get 2025 data
+            const index2025 = years.indexOf(2025);
+            if (index2025 !== -1) {
+                const latestSales = evSales[index2025];
+                const latestPercentage = evPercentages[index2025];
+                const latestGrowth = yoyGrowth[index2025];
+
+                document.getElementById('evSales').textContent = formatNumber(latestSales);
+                document.getElementById('evPercentage').textContent = formatPercentage(latestPercentage * 100, 2);
+
+                if (latestGrowth !== null && latestGrowth !== undefined) {
+                    const growthFormatted = formatPercentage(latestGrowth, 2);
+                    document.getElementById('yoyGrowth').textContent = growthFormatted;
+
+                    const growthElement = document.getElementById('yoyGrowth');
+                    if (latestGrowth > 0) {
+                        growthElement.style.color = '#4ade80';
+                    } else if (latestGrowth < 0) {
+                        growthElement.style.color = '#f87171';
+                    } else {
+                        growthElement.style.color = 'white';
+                    }
+                } else {
+                    document.getElementById('yoyGrowth').textContent = 'N/A';
+                    document.getElementById('yoyGrowth').style.color = 'white';
+                }
+            }
+
+            // Global rank and share
+            if (rank !== null && rank !== undefined) {
+                document.getElementById('globalRank').textContent = '#' + rank;
+                document.getElementById('globalShare').textContent = formatPercentage(globalShare, 2) + ' of global EV sales';
+            } else {
+                document.getElementById('globalRank').textContent = '-';
+                document.getElementById('globalShare').textContent = '-';
+            }
+
+            // Calculate cumulative sales
+            const cumulativeSales = [];
+            let cumSum = 0;
+            evSales.forEach(sale => {
+                cumSum += sale;
+                cumulativeSales.push(cumSum);
+            });
+
+            // Create chart labels with incomplete markers
+            const chartLabels = years.map((year, idx) => {
+                return isComplete[idx] === 'No' ? year + '*' : year.toString();
+            });
+
+            // Update Annual Chart
+            if (annualChart) {
+                annualChart.destroy();
+            }
+
+            const annualCtx = document.getElementById('annualChart').getContext('2d');
+            annualChart = new Chart(annualCtx, {
+                type: 'bar',
+                data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        label: 'EV Sales',
+                        data: evSales,
+                        backgroundColor: years.map((year, idx) =>
+                            isComplete[idx] === 'No' ? 'rgba(255, 193, 7, 0.8)' : 'rgba(102, 126, 234, 0.8)'
+                        ),
+                        borderColor: years.map((year, idx) =>
+                            isComplete[idx] === 'No' ? 'rgba(255, 193, 7, 1)' : 'rgba(102, 126, 234, 1)'
+                        ),
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            padding: 12,
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 13 },
+                            callbacks: {
+                                label: function(context) {
+                                    const idx = context.dataIndex;
+                                    const complete = isComplete[idx] === 'Yes' ? '' : ' (Partial data)';
+                                    return 'Sales: ' + formatNumber(context.parsed.y) + complete;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return formatNumber(value);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Update Cumulative Chart
+            if (cumulativeChart) {
+                cumulativeChart.destroy();
+            }
+
+            const cumulativeCtx = document.getElementById('cumulativeChart').getContext('2d');
+            cumulativeChart = new Chart(cumulativeCtx, {
+                type: 'line',
+                data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        label: 'Cumulative Sales',
+                        data: cumulativeSales,
+                        backgroundColor: 'rgba(118, 75, 162, 0.2)',
+                        borderColor: 'rgba(118, 75, 162, 1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: years.map((year, idx) => isComplete[idx] === 'No' ? 8 : 6),
+                        pointHoverRadius: 10,
+                        pointBackgroundColor: years.map((year, idx) =>
+                            isComplete[idx] === 'No' ? 'rgba(255, 193, 7, 1)' : 'rgba(118, 75, 162, 1)'
+                        ),
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            padding: 12,
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 13 },
+                            callbacks: {
+                                label: function(context) {
+                                    const idx = context.dataIndex;
+                                    const complete = isComplete[idx] === 'Yes' ? '' : ' (Partial data)';
+                                    return 'Cumulative: ' + formatNumber(context.parsed.y) + complete;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return formatNumber(value);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
