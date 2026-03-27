@@ -285,6 +285,41 @@
             vertical-align: super;
         }
 
+        .recent-updates {
+            margin-top: 1.5rem;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .recent-updates h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #86868b;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .recent-updates ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 18px;
+            justify-content: center;
+        }
+
+        .recent-updates li {
+            font-size: 0.875rem;
+            color: #86868b;
+        }
+
+        .recent-updates li::before {
+            content: "\2713  ";
+            opacity: 0.7;
+        }
+
         @media (max-width: 768px) {
             .charts-grid {
                 grid-template-columns: 1fr;
@@ -411,6 +446,28 @@
 
             // Initialize rankings
             updateRankings();
+
+            // Populate recent data updates
+            const monthNames = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
+            const updates = [];
+            for (const c in evData) {
+                const d = evData[c];
+                const lastIdx = d.years.length - 1;
+                updates.push({
+                    country: c,
+                    year: d.years[lastIdx],
+                    months: d.months_available[lastIdx],
+                    evSales: d.ev_sales[lastIdx]
+                });
+            }
+            updates.sort((a, b) => b.year - a.year || b.months - a.months || b.evSales - a.evSales);
+            const top5 = updates.slice(0, 5);
+            const updatesEl = document.getElementById('recentUpdates');
+            if (top5.length) {
+                updatesEl.innerHTML = '<h3>Latest Data</h3><ul>' +
+                    top5.map(u => '<li>Added ' + u.country + ' ' + monthNames[u.months] + ' ' + u.year + ' data</li>').join('') +
+                    '</ul>';
+            }
         });
 
         function switchView(view) {
