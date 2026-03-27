@@ -74,12 +74,40 @@ for _, row in df_latest_sorted.iterrows():
 print(f"  - Rankings calculated for {latest_year}")
 print(f"  - Global EV sales: {global_ev_total:,.0f}")
 
-# Step 5: Convert to JSON format for JavaScript
-print("Step 5: Generating web data file...")
+# Step 5: Build monthly EV sales data
+print("Step 5: Building monthly breakdown data...")
+ev_fuel_types = ['BatteryElectric', 'PluginHybrid']
+monthly_ev = df[df['Fuel'].isin(ev_fuel_types)].groupby(['Country', 'Year', 'Month'])['Value'].sum().reset_index()
+
+# Build nested dict: { country: { year: { month: ev_sales } } }
+monthly_by_country = {}
+for _, row in monthly_ev.iterrows():
+    c_name = row['Country']
+    y = int(row['Year'])
+    m = int(row['Month'])
+    v = int(row['Value'])
+    if c_name not in monthly_by_country:
+        monthly_by_country[c_name] = {}
+    if y not in monthly_by_country[c_name]:
+        monthly_by_country[c_name][y] = {}
+    monthly_by_country[c_name][y][m] = v
+
+print(f"  - Monthly data built for {len(monthly_by_country)} countries")
+
+# Step 6: Convert to JSON format for JavaScript
+print("Step 6: Generating web data file...")
 countries_data = {}
 
 for country in pivot_data['Country'].unique():
     country_df = pivot_data[pivot_data['Country'] == country].sort_values('Year')
+
+    # Build monthly_ev_sales as { "2025": [jan, feb, ...], "2024": [...] }
+    monthly_sales = {}
+    if country in monthly_by_country:
+        for yr in monthly_by_country[country]:
+            months_dict = monthly_by_country[country][yr]
+            monthly_arr = [months_dict.get(m, None) for m in range(1, 13)]
+            monthly_sales[str(yr)] = monthly_arr
 
     countries_data[country] = {
         'years': country_df['Year'].tolist(),
@@ -89,6 +117,7 @@ for country in pivot_data['Country'].unique():
         'yoy_growth': [],
         'months_available': country_df['Months_Available'].tolist(),
         'is_complete': country_df['Is_Complete'].apply(lambda x: 'Yes' if x else 'No').tolist(),
+        'monthly_ev_sales': monthly_sales,
         'rank': None,
         'global_share': None
     }
@@ -112,7 +141,7 @@ with open('ev_data.js', 'w') as f:
     json.dump(countries_data, f, indent=2)
     f.write(';')
 
-print(f"Step 6: Complete!")
+print(f"Step 7: Complete!")
 print(f"  - Updated ev_data.js with {len(countries_data)} countries")
 print(f"  - Data range: {pivot_data['Year'].min()} to {pivot_data['Year'].max()}")
 print(f"\nDashboard update finished at {datetime.now()}")
