@@ -559,7 +559,7 @@
                         country: country,
                         evSales: data.ev_sales[index2025],
                         totalSales: data.total_sales[index2025],
-                        evPercentage: data.ev_percentage[index2025] * 100,
+                        evPercentage: data.ev_percentage[index2025],
                         growth: data.yoy_growth[index2025],
                         isComplete: data.is_complete[index2025]
                     });
@@ -673,7 +673,7 @@
                 const latestGrowth = yoyGrowth[index2025];
 
                 document.getElementById('evSales').textContent = formatNumber(latestSales);
-                document.getElementById('evPercentage').textContent = formatPercentage(latestPercentage * 100, 2);
+                document.getElementById('evPercentage').textContent = formatPercentage(latestPercentage, 2);
 
                 if (latestGrowth !== null && latestGrowth !== undefined) {
                     const growthFormatted = formatPercentage(latestGrowth, 2);
