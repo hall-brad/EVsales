@@ -341,6 +341,44 @@
                 overflow-x: auto;
             }
         }
+    
+        .ytd-summary {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .ytd-card {
+            flex: 1;
+            min-width: 180px;
+            background: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+        }
+        .ytd-card .ytd-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #aaa;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .ytd-card .ytd-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+        .ytd-card .ytd-change {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+        .ytd-change.positive { color: #4ade80; }
+        .ytd-change.negative { color: #f87171; }
+    
     </style>
 </head>
 <body>
@@ -407,6 +445,15 @@
                 </div>
             </div>
 
+            
+                <div class="chart-container" id="monthlyComparisonCard" style="display:none;">
+                    <div class="chart-title" id="monthlyChartTitle">Monthly EV Sales Comparison</div>
+                    <div class="ytd-summary" id="ytdSummary"></div>
+                    <div class="chart-wrapper" style="height:400px;">
+                        <canvas id="monthlyComparisonChart"></canvas>
+                    </div>
+                </div>
+
             <!-- Rankings View -->
             <div class="rankings-view">
                 <div class="rankings-selector">
@@ -431,7 +478,7 @@
 
     <script src="ev_data.js"></script>
     <script>
-        let annualChart, cumulativeChart;
+        let annualChart, cumulativeChart, monthlyCompChart;
 
         // Populate country dropdown
         window.addEventListener('DOMContentLoaded', () => {
@@ -784,6 +831,105 @@
                         }
                     }
                 }
+            });
+        
+
+            // Monthly comparison chart
+            var monthlyCard = document.getElementById('monthlyComparisonCard');
+            var monthlySales = data.monthly_ev_sales;
+            if (monthlyCompChart) monthlyCompChart.destroy();
+
+            if (!monthlySales) { monthlyCard.style.display = 'none'; return; }
+
+            var availYears = Object.keys(monthlySales).map(Number).sort(function(a,b){return b-a;});
+            if (availYears.length < 2) { monthlyCard.style.display = 'none'; return; }
+
+            var currYear = availYears[0];
+            var prevYear = availYears[1];
+            var currMonths = monthlySales[String(currYear)];
+            var prevMonths = monthlySales[String(prevYear)];
+
+            var lastMonth = 0;
+            for (var mi = 0; mi < 12; mi++) {
+                if (currMonths[mi] !== null && currMonths[mi] !== undefined && currMonths[mi] > 0) lastMonth = mi + 1;
+            }
+            if (lastMonth === 0) { monthlyCard.style.display = 'none'; return; }
+
+            monthlyCard.style.display = '';
+            var monthLabels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            var mLabels = monthLabels.slice(0, lastMonth);
+            var currData = currMonths.slice(0, lastMonth);
+            var prevData = prevMonths.slice(0, lastMonth);
+
+            document.getElementById('monthlyChartTitle').textContent = 'Monthly EV Sales: ' + currYear + ' vs ' + prevYear;
+
+            var ytdCurr = currData.reduce(function(s,v){return s+(v||0);}, 0);
+            var ytdPrev = prevData.reduce(function(s,v){return s+(v||0);}, 0);
+            var ytdPct = ytdPrev > 0 ? ((ytdCurr - ytdPrev) / ytdPrev * 100) : null;
+            var ytdClass = ytdPct !== null ? (ytdPct >= 0 ? 'positive' : 'negative') : '';
+            var ytdSign = ytdPct !== null ? (ytdPct >= 0 ? '+' : '') : '';
+
+            document.getElementById('ytdSummary').innerHTML =
+                '<div class="ytd-card"><div class="ytd-label">YTD ' + currYear + ' (Jan\u2013' + monthLabels[lastMonth-1] + ')</div><div class="ytd-value">' + formatNumber(ytdCurr) + '</div></div>' +
+                '<div class="ytd-card"><div class="ytd-label">YTD ' + prevYear + ' (Jan\u2013' + monthLabels[lastMonth-1] + ')</div><div class="ytd-value">' + formatNumber(ytdPrev) + '</div></div>' +
+                '<div class="ytd-card"><div class="ytd-label">YTD Change</div><div class="ytd-value ' + ytdClass + '">' + (ytdPct !== null ? ytdSign + ytdPct.toFixed(1) + '%' : 'N/A') + '</div><div class="ytd-change ' + ytdClass + '">' + (ytdPct !== null ? ytdSign + formatNumber(ytdCurr - ytdPrev) + ' vehicles' : '') + '</div></div>';
+
+            var pctDiffs = currData.map(function(v, i) {
+                var p = prevData[i];
+                if (!p || p === 0) return null;
+                return ((v - p) / p * 100);
+            });
+
+            var monthlyCtx = document.getElementById('monthlyComparisonChart').getContext('2d');
+            monthlyCompChart = new Chart(monthlyCtx, {
+                type: 'bar',
+                data: {
+                    labels: mLabels,
+                    datasets: [
+                        { label: String(prevYear), data: prevData, backgroundColor: 'rgba(148, 163, 184, 0.7)', borderRadius: 6, borderSkipped: false },
+                        { label: String(currYear), data: currData, backgroundColor: 'rgba(99, 102, 241, 0.8)', borderRadius: 6, borderSkipped: false }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: true, position: 'top', labels: { color: '#ccc', font: { size: 13, weight: '500' }, padding: 20, usePointStyle: true, pointStyle: 'rectRounded' } },
+                        tooltip: {
+                            backgroundColor: 'rgba(0,0,0,0.85)', padding: 12, cornerRadius: 8,
+                            callbacks: {
+                                label: function(ctx) { return ctx.dataset.label + ': ' + formatNumber(ctx.parsed.y) + ' vehicles'; },
+                                afterBody: function(items) {
+                                    if (items.length < 2) return '';
+                                    var idx = items[0].dataIndex;
+                                    var diff = pctDiffs[idx];
+                                    if (diff === null) return '';
+                                    return 'Change: ' + (diff >= 0 ? '+' : '') + diff.toFixed(1) + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { color: '#aaa', callback: function(value) { return formatNumber(value); } }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                        x: { ticks: { color: '#aaa' }, grid: { display: false } }
+                    }
+                },
+                plugins: [{
+                    id: 'pctAnnotation',
+                    afterDatasetsDraw: function(chart) {
+                        var meta = chart.getDatasetMeta(1);
+                        var ctx2 = chart.ctx;
+                        ctx2.save();
+                        ctx2.font = '600 11px sans-serif';
+                        ctx2.textAlign = 'center';
+                        meta.data.forEach(function(bar, i) {
+                            var diff = pctDiffs[i];
+                            if (diff === null) return;
+                            ctx2.fillStyle = diff >= 0 ? '#4ade80' : '#f87171';
+                            ctx2.fillText((diff >= 0 ? '+' : '') + diff.toFixed(0) + '%', bar.x, bar.y - 8);
+                        });
+                        ctx2.restore();
+                    }
+                }]
             });
         }
     </script>
