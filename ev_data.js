@@ -184,8 +184,8 @@ const evData = {
         null
       ]
     },
-    "rank": 53,
-    "global_share": 0.04708136244180204
+    "rank": 54,
+    "global_share": 0.043422163131681915
   },
   "Australia": {
     "years": [
@@ -352,7 +352,7 @@ const evData = {
       ]
     },
     "rank": 13,
-    "global_share": 1.0983340371426533
+    "global_share": 1.0129706801250686
   },
   "Austria": {
     "years": [
@@ -561,7 +561,7 @@ const evData = {
       ]
     },
     "rank": 29,
-    "global_share": 0.4526281216396035
+    "global_share": 0.4174495196505058
   },
   "Belgium": {
     "years": [
@@ -874,8 +874,8 @@ const evData = {
         null
       ]
     },
-    "rank": 19,
-    "global_share": 0.7590387725972725
+    "rank": 20,
+    "global_share": 0.7000457016878304
   },
   "Belgium including used": {
     "years": [
@@ -1189,7 +1189,7 @@ const evData = {
       ]
     },
     "rank": 14,
-    "global_share": 1.0520665010682833
+    "global_share": 0.9702990921563545
   },
   "Brazil": {
     "years": [
@@ -1524,7 +1524,7 @@ const evData = {
       ]
     },
     "rank": 11,
-    "global_share": 1.284861031110228
+    "global_share": 1.1850006542052383
   },
   "Bulgaria": {
     "years": [
@@ -1538,36 +1538,36 @@ const evData = {
       1020.0,
       2037.0,
       2025.0,
-      3076.0,
-      1473.0
+      3073.0,
+      1890.0
     ],
     "total_sales": [
       28681.0,
       37740.0,
       42941.0,
-      49505.0,
-      16207.0
+      49498.0,
+      20500.0
     ],
     "ev_percentage": [
       3.56,
       5.4,
       4.72,
       6.21,
-      9.09
+      9.22
     ],
     "yoy_growth": [
       null,
       99.71,
       -0.59,
-      51.9,
-      -52.11
+      51.75,
+      -38.5
     ],
     "months_available": [
       12,
       12,
       12,
       12,
-      4
+      5
     ],
     "is_complete": [
       "Yes",
@@ -1624,7 +1624,7 @@ const evData = {
         158,
         256,
         182,
-        265,
+        262,
         298,
         336,
         245,
@@ -1638,7 +1638,7 @@ const evData = {
         276,
         431,
         539,
-        null,
+        417,
         null,
         null,
         null,
@@ -1649,7 +1649,7 @@ const evData = {
       ]
     },
     "rank": 60,
-    "global_share": 0.014799583200335982
+    "global_share": 0.017513420469244305
   },
   "California": {
     "years": [
@@ -2068,7 +2068,7 @@ const evData = {
       ]
     },
     "rank": 25,
-    "global_share": 0.6367236837339392
+    "global_share": 0.5872370345925428
   },
   "California CNCDA": {
     "years": [
@@ -2360,8 +2360,8 @@ const evData = {
         null
       ]
     },
-    "rank": 46,
-    "global_share": 0.08347246246679683
+    "rank": 47,
+    "global_share": 0.07698491917511549
   },
   "Canada": {
     "years": [
@@ -2591,7 +2591,7 @@ const evData = {
       ]
     },
     "rank": 31,
-    "global_share": 0.42192375893748074
+    "global_share": 0.3891315233785425
   },
   "Chile": {
     "years": [
@@ -2799,8 +2799,8 @@ const evData = {
         null
       ]
     },
-    "rank": 49,
-    "global_share": 0.07838855949017061
+    "rank": 50,
+    "global_share": 0.07229614100584342
   },
   "China": {
     "years": [
@@ -3135,7 +3135,7 @@ const evData = {
       ]
     },
     "rank": 1,
-    "global_share": 37.243668556459355
+    "global_share": 34.34906229996882
   },
   "Colombia": {
     "years": [
@@ -3323,7 +3323,7 @@ const evData = {
       ]
     },
     "rank": 38,
-    "global_share": 0.19634314657227814
+    "global_share": 0.18108320783596413
   },
   "Croatia": {
     "years": [
@@ -3338,35 +3338,35 @@ const evData = {
       2645.0,
       3198.0,
       3795.0,
-      2690.0
+      3590.0
     ],
     "total_sales": [
       42892.0,
       57531.0,
       65020.0,
       69841.0,
-      25553.0
+      35148.0
     ],
     "ev_percentage": [
       5.35,
       4.6,
       4.92,
       5.43,
-      10.53
+      10.21
     ],
     "yoy_growth": [
       null,
       15.3,
       20.91,
       18.67,
-      -29.12
+      -5.4
     ],
     "months_available": [
       12,
       12,
       12,
       12,
-      4
+      5
     ],
     "is_complete": [
       "Yes",
@@ -3437,7 +3437,7 @@ const evData = {
         533,
         925,
         816,
-        null,
+        900,
         null,
         null,
         null,
@@ -3448,7 +3448,7 @@ const evData = {
       ]
     },
     "rank": 58,
-    "global_share": 0.027027073190022937
+    "global_share": 0.033266232531527544
   },
   "Cyprus": {
     "years": [
@@ -3463,35 +3463,35 @@ const evData = {
       1299.0,
       1857.0,
       2247.0,
-      850.0
+      1088.0
     ],
     "total_sales": [
       11627.0,
       14740.0,
       15057.0,
       14634.0,
-      4855.0
+      6167.0
     ],
     "ev_percentage": [
       5.13,
       8.81,
       12.33,
       15.35,
-      17.51
+      17.64
     ],
     "yoy_growth": [
       null,
       117.95,
       42.96,
       21.0,
-      -62.17
+      -51.58
     ],
     "months_available": [
       12,
       12,
       12,
       12,
-      4
+      5
     ],
     "is_complete": [
       "Yes",
@@ -3562,7 +3562,7 @@ const evData = {
         166,
         192,
         234,
-        null,
+        238,
         null,
         null,
         null,
@@ -3573,7 +3573,7 @@ const evData = {
       ]
     },
     "rank": 63,
-    "global_share": 0.008540153238483084
+    "global_share": 0.010081799719861272
   },
   "Czechia": {
     "years": [
@@ -4118,7 +4118,7 @@ const evData = {
       ]
     },
     "rank": 44,
-    "global_share": 0.11504088774191919
+    "global_share": 0.10609982241949593
   },
   "Denmark": {
     "years": [
@@ -4705,7 +4705,7 @@ const evData = {
       ]
     },
     "rank": 24,
-    "global_share": 0.6394364383020928
+    "global_share": 0.5897389518117012
   },
   "EFTA": {
     "years": [
@@ -4719,36 +4719,36 @@ const evData = {
       222219.0,
       200982.0,
       188908.0,
-      263981.0,
-      65421.0
+      264244.0,
+      89179.0
     ],
     "total_sales": [
       416922.0,
       396715.0,
       377486.0,
-      428671.0,
-      114394.0
+      428485.0,
+      151242.0
     ],
     "ev_percentage": [
       53.3,
       50.66,
       50.04,
-      61.58,
-      57.19
+      61.67,
+      58.96
     ],
     "yoy_growth": [
       null,
       -9.56,
       -6.01,
-      39.74,
-      -75.22
+      39.88,
+      -66.25
     ],
     "months_available": [
       12,
       12,
       12,
       12,
-      4
+      5
     ],
     "is_complete": [
       "Yes",
@@ -4805,7 +4805,7 @@ const evData = {
         13829,
         20136,
         17171,
-        20927,
+        21190,
         26218,
         16690,
         19380,
@@ -4819,7 +4819,7 @@ const evData = {
         12605,
         26704,
         18578,
-        null,
+        23758,
         null,
         null,
         null,
@@ -4829,8 +4829,8 @@ const evData = {
         null
       ]
     },
-    "rank": 23,
-    "global_share": 0.6573004294291787
+    "rank": 16,
+    "global_share": 0.8263647217072687
   },
   "EU + EFTA + UK": {
     "years": [
@@ -4844,36 +4844,36 @@ const evData = {
       2589069.0,
       3009172.0,
       2946223.0,
-      3857020.0,
-      1452033.0
+      3857430.0,
+      1843859.0
     ],
     "total_sales": [
       11293409.0,
       12849451.0,
       12962558.0,
-      13274572.0,
-      4674188.0
+      13273595.0,
+      5826711.0
     ],
     "ev_percentage": [
       22.93,
       23.42,
       22.73,
       29.06,
-      31.06
+      31.64
     ],
     "yoy_growth": [
       null,
       16.23,
       -2.09,
-      30.91,
-      -62.35
+      30.93,
+      -52.2
     ],
     "months_available": [
       12,
       12,
       12,
       12,
-      4
+      5
     ],
     "is_complete": [
       "Yes",
@@ -4930,7 +4930,7 @@ const evData = {
         237022,
         362973,
         283232,
-        301640,
+        302050,
         357620,
         297893,
         242494,
@@ -4944,7 +4944,7 @@ const evData = {
         286935,
         502441,
         373941,
-        null,
+        391826,
         null,
         null,
         null,
@@ -4955,7 +4955,7 @@ const evData = {
       ]
     },
     "rank": 2,
-    "global_share": 14.588922738040363
+    "global_share": 17.08586135079383
   },
   "EUROPEAN UNION": {
     "years": [
@@ -4969,36 +4969,36 @@ const evData = {
       1998197.0,
       2352195.0,
       2208167.0,
-      2894588.0,
-      1110651.0
+      2894735.0,
+      1412621.0
     ],
     "total_sales": [
       9262422.0,
       10549682.0,
       10632294.0,
-      10825368.0,
-      3795693.0
+      10824577.0,
+      4750706.0
     ],
     "ev_percentage": [
       21.57,
       22.3,
       20.77,
       26.74,
-      29.26
+      29.73
     ],
     "yoy_growth": [
       null,
       17.72,
       -6.12,
       31.09,
-      -61.63
+      -51.2
     ],
     "months_available": [
       12,
       12,
       12,
       12,
-      4
+      5
     ],
     "is_complete": [
       "Yes",
@@ -5055,7 +5055,7 @@ const evData = {
         194676,
         239709,
         227430,
-        230077,
+        230224,
         262666,
         233889,
         191342,
@@ -5069,7 +5069,7 @@ const evData = {
         242052,
         339946,
         295682,
-        null,
+        301970,
         null,
         null,
         null,
@@ -5080,7 +5080,7 @@ const evData = {
       ]
     },
     "rank": 3,
-    "global_share": 11.158976158205267
+    "global_share": 13.089854781314475
   },
   "Ecuador": {
     "years": [
@@ -5226,7 +5226,7 @@ const evData = {
       ]
     },
     "rank": 65,
-    "global_share": 0.0061489103317078206
+    "global_share": 0.005671012342421965
   },
   "Estonia": {
     "years": [
@@ -5241,35 +5241,35 @@ const evData = {
       2005.0,
       2589.0,
       2271.0,
-      932.0
+      1174.0
     ],
     "total_sales": [
       20426.0,
       22820.0,
       25386.0,
       13055.0,
-      6164.0
+      8047.0
     ],
     "ev_percentage": [
       5.45,
       8.79,
       10.2,
       17.4,
-      15.12
+      14.59
     ],
     "yoy_growth": [
       null,
       80.14,
       29.13,
       -12.28,
-      -58.96
+      -48.3
     ],
     "months_available": [
       12,
       12,
       12,
       12,
-      4
+      5
     ],
     "is_complete": [
       "Yes",
@@ -5340,7 +5340,7 @@ const evData = {
         152,
         280,
         269,
-        null,
+        242,
         null,
         null,
         null,
@@ -5351,7 +5351,7 @@ const evData = {
       ]
     },
     "rank": 62,
-    "global_share": 0.009364026845019099
+    "global_share": 0.010878706683012072
   },
   "Finland": {
     "years": [
@@ -5644,7 +5644,7 @@ const evData = {
       ]
     },
     "rank": 39,
-    "global_share": 0.18082016215644714
+    "global_share": 0.16676668157935967
   },
   "Finland including used": {
     "years": [
@@ -5937,7 +5937,7 @@ const evData = {
       ]
     },
     "rank": 35,
-    "global_share": 0.28904902178578806
+    "global_share": 0.26658391189401554
   },
   "France": {
     "years": [
@@ -6293,7 +6293,7 @@ const evData = {
       ]
     },
     "rank": 7,
-    "global_share": 2.2431164606635505
+    "global_share": 2.068779742699511
   },
   "Germany": {
     "years": [
@@ -6690,8 +6690,8 @@ const evData = {
         null
       ]
     },
-    "rank": 4,
-    "global_share": 4.174929264925736
+    "rank": 5,
+    "global_share": 3.8504505860238556
   },
   "Greece": {
     "years": [
@@ -6710,7 +6710,7 @@ const evData = {
       15205.0,
       16969.0,
       20548.0,
-      6167.0
+      8075.0
     ],
     "total_sales": [
       80978.0,
@@ -6719,7 +6719,7 @@ const evData = {
       134484.0,
       137075.0,
       144199.0,
-      49087.0
+      65329.0
     ],
     "ev_percentage": [
       2.63,
@@ -6728,7 +6728,7 @@ const evData = {
       11.31,
       12.38,
       14.25,
-      12.56
+      12.36
     ],
     "yoy_growth": [
       null,
@@ -6737,7 +6737,7 @@ const evData = {
       82.75,
       11.6,
       21.09,
-      -69.99
+      -60.7
     ],
     "months_available": [
       12,
@@ -6746,7 +6746,7 @@ const evData = {
       12,
       12,
       12,
-      4
+      5
     ],
     "is_complete": [
       "Yes",
@@ -6847,7 +6847,7 @@ const evData = {
         1490,
         1795,
         1558,
-        null,
+        1908,
         null,
         null,
         null,
@@ -6857,8 +6857,8 @@ const evData = {
         null
       ]
     },
-    "rank": 51,
-    "global_share": 0.0619613235549708
+    "rank": 48,
+    "global_share": 0.07482585729584539
   },
   "Hungary": {
     "years": [
@@ -6873,35 +6873,35 @@ const evData = {
       11361.0,
       14260.0,
       18138.0,
-      8113.0
+      10634.0
     ],
     "total_sales": [
       111523.0,
       107740.0,
       121611.0,
-      129427.0,
-      48291.0
+      129431.0,
+      59809.0
     ],
     "ev_percentage": [
       8.61,
       10.54,
       11.73,
       14.01,
-      16.8
+      17.78
     ],
     "yoy_growth": [
       null,
       18.37,
       25.52,
       27.19,
-      -55.27
+      -41.37
     ],
     "months_available": [
       12,
       12,
       12,
       12,
-      4
+      5
     ],
     "is_complete": [
       "Yes",
@@ -6972,7 +6972,7 @@ const evData = {
         1613,
         2579,
         2503,
-        null,
+        2521,
         null,
         null,
         null,
@@ -6982,8 +6982,8 @@ const evData = {
         null
       ]
     },
-    "rank": 47,
-    "global_share": 0.08151325085154501
+    "rank": 45,
+    "global_share": 0.09853847262959997
   },
   "Iceland": {
     "years": [
@@ -7359,8 +7359,8 @@ const evData = {
         null
       ]
     },
-    "rank": 55,
-    "global_share": 0.03757667424932557
+    "rank": 56,
+    "global_share": 0.03465618653702312
   },
   "India": {
     "years": [
@@ -7925,8 +7925,8 @@ const evData = {
         null
       ]
     },
-    "rank": 17,
-    "global_share": 0.7947466603732358
+    "rank": 18,
+    "global_share": 0.7329783452580391
   },
   "Indonesia": {
     "years": [
@@ -8303,7 +8303,7 @@ const evData = {
       ]
     },
     "rank": 26,
-    "global_share": 0.6020808033130575
+    "global_share": 0.5552866251954841
   },
   "Ireland": {
     "years": [
@@ -8743,7 +8743,7 @@ const evData = {
       ]
     },
     "rank": 34,
-    "global_share": 0.31360447415620296
+    "global_share": 0.2892308958235569
   },
   "Israel": {
     "years": [
@@ -8952,7 +8952,7 @@ const evData = {
       ]
     },
     "rank": 41,
-    "global_share": 0.12544982745376446
+    "global_share": 0.11569977141745207
   },
   "Italy": {
     "years": [
@@ -9308,7 +9308,7 @@ const evData = {
       ]
     },
     "rank": 9,
-    "global_share": 1.3798878185567844
+    "global_share": 1.2726418874317529
   },
   "Japan": {
     "years": [
@@ -9517,7 +9517,7 @@ const evData = {
       ]
     },
     "rank": 27,
-    "global_share": 0.5673274032519833
+    "global_share": 0.5232342858287561
   },
   "Latvia": {
     "years": [
@@ -9531,36 +9531,36 @@ const evData = {
       1363.0,
       2095.0,
       2024.0,
-      4344.0,
-      1124.0
+      4355.0,
+      1379.0
     ],
     "total_sales": [
       16754.0,
       18679.0,
       17131.0,
-      22506.0,
-      6902.0
+      22556.0,
+      8957.0
     ],
     "ev_percentage": [
       8.14,
       11.22,
       11.81,
-      19.3,
-      16.29
+      19.31,
+      15.4
     ],
     "yoy_growth": [
       null,
       53.71,
       -3.39,
-      114.62,
-      -74.13
+      115.17,
+      -68.34
     ],
     "months_available": [
       12,
       12,
       12,
       12,
-      4
+      5
     ],
     "is_complete": [
       "Yes",
@@ -9617,7 +9617,7 @@ const evData = {
         214,
         350,
         378,
-        411,
+        422,
         394,
         480,
         433,
@@ -9631,7 +9631,7 @@ const evData = {
         227,
         321,
         314,
-        null,
+        255,
         null,
         null,
         null,
@@ -9642,7 +9642,7 @@ const evData = {
       ]
     },
     "rank": 61,
-    "global_share": 0.011293096753005867
+    "global_share": 0.012778310490522696
   },
   "Lithuania": {
     "years": [
@@ -9657,35 +9657,35 @@ const evData = {
       3050.0,
       3464.0,
       7598.0,
-      2820.0
+      3651.0
     ],
     "total_sales": [
       25496.0,
       27601.0,
       30122.0,
-      41970.0,
-      14263.0
+      41971.0,
+      19095.0
     ],
     "ev_percentage": [
       5.29,
       11.05,
       11.5,
       18.1,
-      19.77
+      19.12
     ],
     "yoy_growth": [
       null,
       125.93,
       13.57,
       119.34,
-      -62.88
+      -51.95
     ],
     "months_available": [
       12,
       12,
       12,
       12,
-      4
+      5
     ],
     "is_complete": [
       "Yes",
@@ -9756,7 +9756,7 @@ const evData = {
         519,
         732,
         900,
-        null,
+        831,
         null,
         null,
         null,
@@ -9767,7 +9767,7 @@ const evData = {
       ]
     },
     "rank": 57,
-    "global_share": 0.028333214273555646
+    "global_share": 0.03383148049376242
   },
   "Luxembourg": {
     "years": [
@@ -10143,8 +10143,8 @@ const evData = {
         null
       ]
     },
-    "rank": 50,
-    "global_share": 0.07410843563182498
+    "rank": 51,
+    "global_share": 0.06834867163023597
   },
   "Malaysia": {
     "years": [
@@ -10731,7 +10731,7 @@ const evData = {
       ]
     },
     "rank": 36,
-    "global_share": 0.25043748190874043
+    "global_share": 0.2309732902732188
   },
   "Malta": {
     "years": [
@@ -10745,36 +10745,36 @@ const evData = {
       2218.0,
       2447.0,
       3401.0,
-      2118.0,
-      619.0
+      2107.0,
+      977.0
     ],
     "total_sales": [
       6409.0,
       7425.0,
       7663.0,
-      6448.0,
-      2253.0
+      6296.0,
+      3053.0
     ],
     "ev_percentage": [
       34.61,
       32.96,
       44.38,
-      32.85,
-      27.47
+      33.47,
+      32.0
     ],
     "yoy_growth": [
       null,
       10.32,
       38.99,
-      -37.72,
-      -70.77
+      -38.05,
+      -53.63
     ],
     "months_available": [
       12,
       12,
       12,
       12,
-      4
+      5
     ],
     "is_complete": [
       "Yes",
@@ -10831,7 +10831,7 @@ const evData = {
         73,
         142,
         251,
-        197,
+        186,
         145,
         147,
         203,
@@ -10845,7 +10845,7 @@ const evData = {
         127,
         155,
         157,
-        null,
+        358,
         null,
         null,
         null,
@@ -10856,7 +10856,7 @@ const evData = {
       ]
     },
     "rank": 64,
-    "global_share": 0.006219241005436505
+    "global_share": 0.009053233755794542
   },
   "Mexico": {
     "years": [
@@ -11338,7 +11338,7 @@ const evData = {
       ]
     },
     "rank": 37,
-    "global_share": 0.23740621279072566
+    "global_share": 0.21895482130570038
   },
   "Nepal": {
     "years": [
@@ -11504,8 +11504,8 @@ const evData = {
         null
       ]
     },
-    "rank": 52,
-    "global_share": 0.04834731456891835
+    "rank": 53,
+    "global_share": 0.0445897244962982
   },
   "Nepal Comtrade": {
     "years": [
@@ -11901,8 +11901,8 @@ const evData = {
         null
       ]
     },
-    "rank": 18,
-    "global_share": 0.786035704069983
+    "rank": 19,
+    "global_share": 0.7249444111062746
   },
   "Netherlands including used": {
     "years": [
@@ -12111,7 +12111,7 @@ const evData = {
       ]
     },
     "rank": 10,
-    "global_share": 1.3576834201367285
+    "global_share": 1.2521632317507847
   },
   "New Zealand": {
     "years": [
@@ -12362,7 +12362,7 @@ const evData = {
       ]
     },
     "rank": 42,
-    "global_share": 0.12207395511478762
+    "global_share": 0.11258627444514197
   },
   "Norway": {
     "years": [
@@ -13789,7 +13789,7 @@ const evData = {
       ]
     },
     "rank": 28,
-    "global_share": 0.5334079240365494
+    "global_share": 0.4919510543450689
   },
   "Poland": {
     "years": [
@@ -13998,7 +13998,7 @@ const evData = {
       ]
     },
     "rank": 32,
-    "global_share": 0.348970755802627
+    "global_share": 0.32184848315251985
   },
   "Portugal": {
     "years": [
@@ -14186,7 +14186,7 @@ const evData = {
       ]
     },
     "rank": 30,
-    "global_share": 0.4305041011323802
+    "global_share": 0.3970449948498307
   },
   "Romania": {
     "years": [
@@ -14201,35 +14201,35 @@ const evData = {
       14438.0,
       9795.0,
       8849.0,
-      3228.0
+      4026.0
     ],
     "total_sales": [
       129326.0,
       143080.0,
       151105.0,
       156803.0,
-      37480.0
+      48730.0
     ],
     "ev_percentage": [
       9.0,
       10.09,
       6.48,
       5.64,
-      8.61
+      8.26
     ],
     "yoy_growth": [
       null,
       24.06,
       -32.16,
       -9.66,
-      -63.52
+      -54.5
     ],
     "months_available": [
       12,
       12,
       12,
       12,
-      4
+      5
     ],
     "is_complete": [
       "Yes",
@@ -14300,7 +14300,7 @@ const evData = {
         934,
         679,
         641,
-        null,
+        798,
         null,
         null,
         null,
@@ -14310,8 +14310,8 @@ const evData = {
         null
       ]
     },
-    "rank": 56,
-    "global_share": 0.032432487828027524
+    "rank": 55,
+    "global_share": 0.03730636550750136
   },
   "Singapore": {
     "years": [
@@ -15108,7 +15108,7 @@ const evData = {
       ]
     },
     "rank": 40,
-    "global_share": 0.14140484315107169
+    "global_share": 0.13041475115563192
   },
   "Slovakia": {
     "years": [
@@ -15123,35 +15123,35 @@ const evData = {
       5386.0,
       4470.0,
       8463.0,
-      2532.0
+      3382.0
     ],
     "total_sales": [
       78840.0,
       90411.0,
       93409.0,
       93103.0,
-      26999.0
+      34165.0
     ],
     "ev_percentage": [
       3.74,
       5.96,
       4.79,
       9.09,
-      9.38
+      9.9
     ],
     "yoy_growth": [
       null,
       82.82,
       -17.01,
       89.33,
-      -70.08
+      -60.04
     ],
     "months_available": [
       12,
       12,
       12,
       12,
-      4
+      5
     ],
     "is_complete": [
       "Yes",
@@ -15222,7 +15222,7 @@ const evData = {
         480,
         701,
         806,
-        null,
+        850,
         null,
         null,
         null,
@@ -15233,7 +15233,7 @@ const evData = {
       ]
     },
     "rank": 59,
-    "global_share": 0.025439609411575494
+    "global_share": 0.03133882964390701
   },
   "Slovenia": {
     "years": [
@@ -15248,35 +15248,35 @@ const evData = {
       5449.0,
       4310.0,
       8358.0,
-      4307.0
+      5538.0
     ],
     "total_sales": [
       46373.0,
       48939.0,
       53018.0,
       57250.0,
-      23899.0
+      30053.0
     ],
     "ev_percentage": [
       6.18,
       11.13,
       8.13,
       14.6,
-      18.02
+      18.43
     ],
     "yoy_growth": [
       null,
       90.19,
       -20.9,
       93.92,
-      -48.47
+      -33.74
     ],
     "months_available": [
       12,
       12,
       12,
       12,
-      4
+      5
     ],
     "is_complete": [
       "Yes",
@@ -15347,7 +15347,7 @@ const evData = {
         776,
         1424,
         1276,
-        null,
+        1231,
         null,
         null,
         null,
@@ -15357,8 +15357,8 @@ const evData = {
         null
       ]
     },
-    "rank": 54,
-    "global_share": 0.043273458821348997
+    "rank": 52,
+    "global_share": 0.05131710188289681
   },
   "South Korea": {
     "years": [
@@ -15588,7 +15588,7 @@ const evData = {
       ]
     },
     "rank": 8,
-    "global_share": 1.6753972150865073
+    "global_share": 1.5451840688293261
   },
   "Spain": {
     "years": [
@@ -15880,8 +15880,8 @@ const evData = {
         null
       ]
     },
-    "rank": 16,
-    "global_share": 0.8794046970643634
+    "rank": 17,
+    "global_share": 0.811056694926744
   },
   "Spain ANFAC": {
     "years": [
@@ -16048,7 +16048,7 @@ const evData = {
       ]
     },
     "rank": 12,
-    "global_share": 1.1199255539773594
+    "global_share": 1.0328840878438021
   },
   "Spain including used": {
     "years": [
@@ -16341,7 +16341,7 @@ const evData = {
       ]
     },
     "rank": 15,
-    "global_share": 0.9340817722688635
+    "global_share": 0.8614842262461238
   },
   "Sweden": {
     "years": [
@@ -16801,8 +16801,8 @@ const evData = {
         null
       ]
     },
-    "rank": 20,
-    "global_share": 0.7401198213642564
+    "rank": 21,
+    "global_share": 0.6825971457388426
   },
   "Switzerland": {
     "years": [
@@ -17284,7 +17284,7 @@ const evData = {
       ]
     },
     "rank": 33,
-    "global_share": 0.3241339807372974
+    "global_share": 0.29894204114195266
   },
   "Taiwan": {
     "years": [
@@ -17619,7 +17619,7 @@ const evData = {
       ]
     },
     "rank": 43,
-    "global_share": 0.11961238153428368
+    "global_share": 0.11031601623616585
   },
   "Thailand": {
     "years": [
@@ -17827,8 +17827,8 @@ const evData = {
         null
       ]
     },
-    "rank": 21,
-    "global_share": 0.729901779195389
+    "rank": 22,
+    "global_share": 0.6731732575815825
   },
   "Turkey": {
     "years": [
@@ -18015,8 +18015,8 @@ const evData = {
         null
       ]
     },
-    "rank": 22,
-    "global_share": 0.7088729077505124
+    "rank": 23,
+    "global_share": 0.6537787660249009
   },
   "USA": {
     "years": [
@@ -18054,8 +18054,8 @@ const evData = {
       931393.0,
       1458216.0,
       1562143.0,
-      1483790.0,
-      322772.0
+      1485872.0,
+      433410.0
     ],
     "total_sales": [
       1144840.0,
@@ -18073,8 +18073,8 @@ const evData = {
       13754339.0,
       15502479.0,
       15858418.0,
-      16212363.0,
-      5033828.0
+      16210139.0,
+      6508090.0
     ],
     "ev_percentage": [
       0.03,
@@ -18092,8 +18092,8 @@ const evData = {
       6.77,
       9.41,
       9.85,
-      9.15,
-      6.41
+      9.17,
+      6.66
     ],
     "yoy_growth": [
       null,
@@ -18111,8 +18111,8 @@ const evData = {
       46.54,
       56.56,
       7.13,
-      -5.02,
-      -78.25
+      -4.88,
+      -70.83
     ],
     "months_available": [
       1,
@@ -18131,7 +18131,7 @@ const evData = {
       12,
       12,
       12,
-      4
+      5
     ],
     "is_complete": [
       "No",
@@ -18368,7 +18368,7 @@ const evData = {
         108844,
         158196,
         129213,
-        126568,
+        128650,
         110769,
         146604,
         174773,
@@ -18381,8 +18381,8 @@ const evData = {
         81522,
         69211,
         89213,
-        82826,
-        null,
+        89514,
+        103950,
         null,
         null,
         null,
@@ -18392,8 +18392,8 @@ const evData = {
         null
       ]
     },
-    "rank": 6,
-    "global_share": 3.242967460107838
+    "rank": 4,
+    "global_share": 4.0161331034789285
   },
   "Ukraine": {
     "years": [
@@ -18706,8 +18706,8 @@ const evData = {
         null
       ]
     },
-    "rank": 48,
-    "global_share": 0.07877035457612633
+    "rank": 49,
+    "global_share": 0.07264826268723563
   },
   "United Kingdom": {
     "years": [
@@ -19460,8 +19460,8 @@ const evData = {
         null
       ]
     },
-    "rank": 5,
-    "global_share": 3.4367485607085713
+    "rank": 6,
+    "global_share": 3.169641847772084
   },
   "Uruguay": {
     "years": [
@@ -19564,7 +19564,7 @@ const evData = {
         null
       ]
     },
-    "rank": 45,
-    "global_share": 0.10054272171470616
+    "rank": 46,
+    "global_share": 0.09272846488662845
   }
 };
